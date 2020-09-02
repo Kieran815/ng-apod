@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class ApodService {
 
   constructor() { }
+
+  getApod(): string {
+    return 'What\'s crackin\', son'
+  }
 }
