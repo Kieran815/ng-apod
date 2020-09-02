@@ -10,8 +10,12 @@ export class ApodComponent implements OnInit {
 
   constructor(private apodService: ApodService) { }
 
-  ngOnInit(): void {
-    console.log(this.apodService.getApod());
+  ngOnInit() {
+    this.apodService.getApod().subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
 
 }
