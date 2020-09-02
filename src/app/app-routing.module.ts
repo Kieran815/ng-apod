@@ -8,7 +8,9 @@ const routes: Routes = [
   // redirect empty route to specified path
   { path: '', redirectTo: '/apod', pathMatch: 'full' },
   // define path to load component
-  { path: 'apod', component: ApodComponent }
+  { path: 'apod', component: ApodComponent },
+  // add date param to api request
+  { path: 'apod/:date', component: ApodComponent }
 ];
 
 @NgModule({

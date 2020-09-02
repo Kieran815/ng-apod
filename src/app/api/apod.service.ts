@@ -19,7 +19,7 @@ export class ApodService {
       this.url=`https://api.nasa.gov/planetary/apod?api_key=${this.ngApodConfig.key}`;
     }
 
-  getApod(): Observable<Apod> {
-    return this.http.get<Apod>(this.url);
+  getApod(date: string): Observable<Apod> {
+    return this.http.get<Apod>(`${this.url}&date=${date}`);
   }
 }
