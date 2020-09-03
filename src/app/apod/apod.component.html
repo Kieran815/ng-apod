@@ -1,1 +1,23 @@
-<p>apod works!</p>
+<main *ngIf="apod">
+
+  <h1>{{ apod.title }}</h1>
+
+  <!-- 
+    Placing square brackets around an attribute creates a data binding. 
+    Anything inside of the double quotes after the equals sign
+    be treated as executable code.
+  -->
+  <img [src]="apod.url" [alt]="apod.title">
+
+  <div>
+    <!-- 
+      Only select images have a copyright, if apod.copyright is 
+      empty we will not attempt to show it
+    -->
+    <span *ngIf="apod.copyright">&copy; {{ apod.copyright }} </span>
+    {{ apod.date }}
+  </div>
+
+  <p>{{ apod.explanation }}</p>
+
+</main>
