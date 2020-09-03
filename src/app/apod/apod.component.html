@@ -6,18 +6,25 @@
     Placing square brackets around an attribute creates a data binding. 
     Anything inside of the double quotes after the equals sign
     be treated as executable code.
-  --><iframe *ngIf="apod.media_type==='video'" [src]="apod.url | safe: 'resourceUrl'" frameborder="0" allowfullscreen></iframe>
-  <img [src]="apod.url" [alt]="apod.title">
+  -->
+  <div id="video" *ngIf="apod.media_type === 'video'">
+    <iframe [src]="apod.url | safe: 'resourceUrl'" frameborder="0" allowfullscreen></iframe>
+  </div>
+  
+  <img *ngIf="apod.media_type==='image'" [src]="apod.url" [alt]="apod.title">
   
   <div>
     <!-- 
       Only select images have a copyright, if apod.copyright is 
       empty we will not attempt to show it
     -->
-    <span *ngIf="apod.copyright">&copy; {{ apod.copyright }} </span>
-    {{ apod.date }}
+    <div>
+      <span *ngIf="apod.copyright" class="copy">&copy; {{ apod.copyright }} </span>
+      {{ apod.date }}
+    </div>
   </div>
 
   <p>{{ apod.explanation }}</p>
 
+  <button *ngIf="date" [routerLink]="['/apod', this.date]">Random</button>
 </main>
