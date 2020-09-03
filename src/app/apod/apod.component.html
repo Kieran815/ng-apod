@@ -6,9 +6,9 @@
     Placing square brackets around an attribute creates a data binding. 
     Anything inside of the double quotes after the equals sign
     be treated as executable code.
-  -->
+  --><iframe *ngIf="apod.media_type==='video'" [src]="apod.url | safe: 'resourceUrl'" frameborder="0" allowfullscreen></iframe>
   <img [src]="apod.url" [alt]="apod.title">
-
+  
   <div>
     <!-- 
       Only select images have a copyright, if apod.copyright is 

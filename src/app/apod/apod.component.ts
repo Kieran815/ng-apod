@@ -32,6 +32,9 @@ export class ApodComponent implements OnInit {
   // run request and assign response to model variable
   // call getApod w/ date as param
   getApod(date: string): void {
+    if (!date) {
+      date = new Date().toISOString().slice(0, 10)
+    }
 
     this.apodService.getApod(date).subscribe(
       (response: any) => {
