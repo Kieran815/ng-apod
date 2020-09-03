@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import ActivatedRouter
-import { ActivatedRouter, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApodService } from '../api/apod.service';
 import { Apod } from '../models/apod';
 
@@ -12,8 +12,11 @@ import { Apod } from '../models/apod';
 export class ApodComponent implements OnInit {
   // import and assign model
   apod: Apod;
+  // create date as instance var
+  date: string;
 
   constructor(
+    // assign apod var
     private apodService: ApodService,
     // inject ActivatedRoute
     private router: ActivatedRoute  
@@ -32,10 +35,21 @@ export class ApodComponent implements OnInit {
 
     this.apodService.getApod(date).subscribe(
       (response: any) => {
+        // assign res obj to apod model
         this.apod = response;
-        console.log(response);
+        // update this.date on api call
+        this.date = this.randomDate(new Date(1995, 5, 16), new Date());
+        console.log(this.date);
       }
     );
+  }
+
+  // create randomDate method
+  randomDate(start, end): string {
+    let date = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
+    return new Date(date).toISOString().slice(0, 10);
   }
 
 }
